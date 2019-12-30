@@ -20,13 +20,13 @@ namespace CodeTest.Repository
         }
         public void Insert(Sequence sequence)
         {
-            var collection = database.GetCollection<Sequence>("sequence");
+            var collection = database.GetCollection<Sequence>("Sequence");
             collection.InsertOne(sequence);
         }
 
         public long GetNextSequenceValue( string sequenceName)
         {
-            var collection = database.GetCollection<Sequence>("sequence");
+            var collection = database.GetCollection<Sequence>("Sequence");
             var filter = Builders<Sequence>.Filter.Eq(a => a.Name, sequenceName);
             Sequence  seq = collection.Find(filter).FirstOrDefault();
             if(seq == null)

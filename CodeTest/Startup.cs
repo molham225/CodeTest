@@ -31,7 +31,8 @@ namespace CodeTest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllers();
             // Configure the persistence in another layer
             MongoDbPersistence.Configure();
             services.AddSwaggerGen(s =>
@@ -40,9 +41,9 @@ namespace CodeTest
                     new OpenApiInfo
                     {
                     Version = "v1",
-                    Title = "MongoDB Repository Pattern and Unit of Work - Example",
-                    Description = "Swagger surface"
-                });
+                    Title = "Workiom Code Test",
+                    Description = "Workiom Code Test"
+                    });
             });
             RegisterServices(services);
         }
@@ -53,6 +54,13 @@ namespace CodeTest
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+                          .CreateScope())
+                {
+                    ISeedDbService seed= serviceScope.ServiceProvider.GetService<ISeedDbService>();
+                    seed.Seed();
+                } 
+                
             }
 
             app.UseHttpsRedirection();
@@ -63,7 +71,7 @@ namespace CodeTest
             });
             app.UseSwaggerUI(s =>
             {
-                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Repository Pattern and Unit of Work API v1.0");
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Workiom Code Test v1.0");
             });
             app.UseRouting();
 
@@ -89,6 +97,7 @@ namespace CodeTest
             #region Services
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IAddedColumnService, AddedColumnService>();
+            services.AddScoped<ISeedDbService, SeedDbService>();
             #endregion
         }
     }

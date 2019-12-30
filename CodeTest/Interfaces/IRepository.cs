@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace CodeTest.Interfaces
@@ -13,6 +14,7 @@ namespace CodeTest.Interfaces
 
         Task<IEnumerable<TEntity>> GetAll();
         Task<IEnumerable<TEntity>> GetAll(PaginationInfo paginationInfo);
+        Task<IEnumerable<TEntity>> GetAll(Expression<Func<TEntity, bool>> where);
         Task Update(TEntity obj);
         Task Remove<TKey>(TKey id);
         Task<IEnumerable<TEntity>> GetFiltered(List<ColumnFilterInfo> filters, PaginationInfo paginationInfo);

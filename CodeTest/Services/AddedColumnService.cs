@@ -40,7 +40,7 @@ namespace CodeTest.Services
             AddedColumnModel model = new AddedColumnModel();
             model.ID = entity.ID;
             model.ColumnName = entity.ColumnName;
-            model.ColumnName = entity.ColumnName;
+            model.ColumnType = entity.ColumnType;
             model.EntityName = entity.EntityName;
             return model;
         }

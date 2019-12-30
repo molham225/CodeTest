@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using ServiceStack;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace CodeTest.Repository
@@ -50,6 +51,14 @@ namespace CodeTest.Repository
             ConfigDbSet();
             var all = DbSet.Find(Builders<TEntity>.Filter.Empty);
             var pageItems = await all.Skip(info.Skip).Limit(10).ToListAsync();
+            return pageItems;
+        }
+
+        public virtual async Task<IEnumerable<TEntity>> GetAll(Expression<Func<TEntity,bool>> where)
+        {
+            ConfigDbSet();
+            var all = DbSet.Find(where);
+            var pageItems = await all.ToListAsync();
             return pageItems;
         }
 

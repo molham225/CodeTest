@@ -7,6 +7,8 @@ namespace CodeTest.Enums
 {
     public enum ResultErrorTypeEnum
     {
+        [Description("{0} Field value already exists in DB!")]
+        UniqueFieldError,
         [Description("Element Not Found!")]
         NotFoundError,
         [Description("Invalid Input!")]

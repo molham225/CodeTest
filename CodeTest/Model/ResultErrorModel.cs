@@ -14,11 +14,11 @@ namespace CodeTest.Model
         public string Message { set; get; }
 
         public ResultErrorModel() { }
-        public ResultErrorModel(ResultErrorTypeEnum errorType)
+        public ResultErrorModel(ResultErrorTypeEnum errorType,params string[] parameters)
         {
             Name = errorType.ToString();
             Type = errorType.ToString();
-            Message = errorType.AsString();
+            Message = string.Format(errorType.AsString(),parameters);
         }
         public ResultErrorModel(Exception e)
         {
@@ -26,5 +26,6 @@ namespace CodeTest.Model
             Type = ResultErrorTypeEnum.Exception.AsString();
             Message = e.Message;
         }
+
     }
 }

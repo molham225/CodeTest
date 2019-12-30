@@ -19,7 +19,7 @@ namespace CodeTest.Repository
         }
         public override async Task<Contact> Add(Contact contact)
         {
-            contact.ID = sequence.GetNextSequenceValue(typeof(Company).Name);
+            contact.ID = sequence.GetNextSequenceValue(typeof(Contact).Name);
             return await base.Add(contact);
         }
 
