@@ -16,7 +16,7 @@ namespace CodeTest.Controllers
         public IAddedColumnService _addedColumn;
         public AddedColumnController(IAddedColumnService _addedColumn)
         {
-            this._addedColumn = _addedColumn;
+            this._addedColumn = _addedColumn; 
         }
         // POST api/<controller>
         [HttpPost]
