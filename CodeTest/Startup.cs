@@ -17,7 +17,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MongoDB.GenericRepository.Interfaces;
-using MongoDB.GenericRepository.UoW;
 
 namespace CodeTest
 {
